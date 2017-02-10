@@ -1,0 +1,19 @@
+{
+  "name": "tartanhacks-2017",
+  "version": "0.1.0",
+  "description": "do something with machine learning",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "author": "Ariel Davis <ariel.z.davis@icloud.com>",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/azdavis/tartanhacks-2017.git"
+  },
+  "bugs": {
+    "url": "https://github.com/azdavis/tartanhacks-2017/issues"
+  },
+  "homepage": "https://github.com/azdavis/tartanhacks-2017#readme"
+}
