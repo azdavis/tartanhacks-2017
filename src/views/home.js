@@ -120,6 +120,15 @@ const threePrep = e => {
         answers.push(toData(r[rMax]))
     }
     console.log({data, answers})
+    fetch("/train", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({data, answers})
+    })
+    .then(x => x.json())
+    .then(x => console.log(x))
 }
 
 title.textContent = "machine learning™"

@@ -12,6 +12,12 @@ app.get("/", (req, res) => {
     res.render("home")
 })
 
+app.post("/train", (req, res) => {
+    const {data, answers} = req.body
+    answers[0]++
+    res.send({data, answers})
+})
+
 app.use((req, res) => {
     res.status(404).render("error", {message: "HTTP 404 Not Found"})
 })
