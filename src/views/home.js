@@ -95,7 +95,7 @@ const two = (question, factors) => {
     const submitBtn = document.createElement("span")
     submitBtn.innerHTML = "submit data"
     submitBtn.className = "yellow"
-    submitBtn.onclick = threePrep
+    submitBtn.onclick = threePrep(thisAddRow, addRowBtn, submitBtn)
 
     footer.appendChild(addRowBtn)
     footer.appendChild(submitBtn)
@@ -103,7 +103,7 @@ const two = (question, factors) => {
 }
 
 const toData = x => isGreen(x) ? 1 : 0
-const threePrep = e => {
+const threePrep = (thisAddRow, addRowBtn, submitBtn) => e => {
     e.preventDefault()
     // a gross hack
     // it would be better to use one of those fancy front-end libraries with
@@ -124,16 +124,18 @@ const threePrep = e => {
         data.push(ary)
         results.push(toData(r[rMax]))
     }
-    console.log({data, results})
-    fetch("/train", {
+    three(fetch("/train", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify({data, results})
-    })
-    .then(x => x.json())
-    .then(x => console.log(x))
+        body: JSON.stringify({d: data, r: results})
+    }).then(x => x.json()), thisAddRow, addRowBtn, submitBtn)
+}
+
+const three = (trained, thisAddRow, addRowBtn, submitBtn) => {
+    submitBtn.textContent = "calculate"
+    addRowBtn.onclick = thisAddRow(true)
 }
 
 title.textContent = "machine learning™"
