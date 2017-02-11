@@ -1,7 +1,7 @@
 const path = require("path")
 
 const options = {
-    entry: "./src/views/home.js",
+    entry: ["promise-polyfill", "whatwg-fetch", "./src/views/home.js"],
     output: {
         path: __dirname,
         filename: "./src/views/home.min.js"

@@ -26,5 +26,9 @@
     "pug": "^2.0.0-beta11",
     "stylus": "^0.54.5",
     "webpack": "^2.2.1"
+  },
+  "dependencies": {
+    "promise-polyfill": "^6.0.2",
+    "whatwg-fetch": "^2.0.2"
   }
 }
