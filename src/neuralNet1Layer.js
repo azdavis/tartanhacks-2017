@@ -1,4 +1,4 @@
-const math = require('mathjs')
+const math = require("mathjs")
 
 // Math functions for nonlinearity
 function sigmoid(val) {
