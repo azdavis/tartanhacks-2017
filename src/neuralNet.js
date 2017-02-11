@@ -36,7 +36,7 @@ function getAveError(m1) {
 // Input Data
 function train(inputData, inputResults) {
     const x = math.matrix(inputData)
-    const y = math.transpose(math.matrix(inputResults))
+    const y = math.transpose(math.matrix([inputResults]))
 
     const layer0 = x
     let layer1
@@ -107,12 +107,21 @@ function train(inputData, inputResults) {
 }
 
 // Test Train
-// console.log(train([[0, 0, 1],
-//                  [0, 1, 1],
-//                  [1, 0, 1],
-//                  [1, 1, 1]], [[0, 0, 1, 1]]))
+let results = (train([[0, 0, 1],
+                 [0, 1, 1],
+                 [1, 0, 1],
+                 [1, 1, 1]], [0, 0, 1, 1]))
+
+function get(input, w0, w1) {
+    let synapse0 = math.matrix(w0)
+    let synapse1 = math.matrix(w1)
+    let x = math.matrix(input)
+    let testl1 = math.multiply(testX, minSynapse0).map(sigmoid)
+    return math.multiply(test, minSynapse1).map(sigmoid)
+}
 
 
+console.log(get([[0, 1, 0]], results.synapse0, results.synapse1))
 // console.log("Output of training data after training")
 // let test = math.multiply(x, minSynapse0).map(sigmoid)
 // console.log(math.multiply(test, minSynapse1).map(sigmoid))
