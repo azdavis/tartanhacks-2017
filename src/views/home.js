@@ -90,7 +90,7 @@ const two = (question, factors) => {
 
     const addRowBtn = document.createElement("span")
     addRowBtn.textContent = "Add datapoint"
-    addRowBtn.className = "gray"
+    addRowBtn.className = "magenta"
     const thisAddRow = addRow(factors.length + 1)
     addRowBtn.onclick = thisAddRow(false)
 
