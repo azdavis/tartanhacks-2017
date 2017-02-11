@@ -115,15 +115,15 @@ const threePrep = (thisAddRow, addRowBtn, submitBtn) => e => {
     const results = []
     // skip the header and footer
     for (let i = 1; i < max; i++) {
-        const r = fc[i].children
-        r.className = "grayed"
-        const rMax = r.length - 1
+        fc[i].className = "grayed"
+        const elems = fc[i].children
+        const rMax = elems.length - 1
         const ary = []
         for (let j = 0; j < rMax; j++) {
-            ary.push(toData(r[j]))
+            ary.push(toData(elems[j]))
         }
         data.push(ary)
-        results.push(toData(r[rMax]))
+        results.push(toData(elems[rMax]))
     }
     three(fetch("/train", {
         method: "POST",
