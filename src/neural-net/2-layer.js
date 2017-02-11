@@ -16,21 +16,19 @@ function getAveError(m1) {
     }
     return math.abs(sum / len)
 }
-// TODO: make a function that sets x and y
-
 // Input Data
 const x = math.matrix([ [0,0,1,1],
-                        [0,1,1,1],
-                        [1,0,1,1],
-                        [1,1,1,1],
-                        [0,0,1,1],
-                        [0,1,1,1],
-                        [1,0,1,1],
+                        [0,1,1,0],
+                        [1,0,0,1],
+                        [1,1,0,0],
+                        [0,0,0,0],
+                        [0,1,0,1],
+                        [1,0,1,0],
                         [1,1,1,1]
 ])
 
 // Output Data
-const y = math.transpose(math.matrix([[0, 1, 1, 0, 0, 1, 1, 0]]))
+const y = math.transpose(math.matrix([[0, 1, 1, 1, 0, 1, 1, 1]]))
 
 const layer0 = x
 let layer1
