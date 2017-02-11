@@ -3,7 +3,7 @@
 const math = require("mathjs")
 const sigmoid = require("./sigmoid")
 const deriv = require("./deriv")
-const multiplyElements = require("./multiplyElements")
+const multiplyElements = require("./multiply-elements")
 
 // must be vertical matrix
 function getAveError(m1) {

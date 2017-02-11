@@ -2,7 +2,7 @@
 
 const express = require("express")
 const bodyParser = require("body-parser")
-const neuralNet = require("./neuralNet")
+const neuralNet = require("./neural-net")
 
 const app = express()
 app.set("view engine", "pug")
