@@ -34,8 +34,8 @@ const two = e => {
         msg2.textContent = "you can't have an empty factor."
         return
     }
-    if (factors.length > 5) {
-        msg2.textContent = "you can't have more than 5 factors."
+    if (factors.length > 7) {
+        msg2.textContent = "you can't have more than 7 factors."
         return
     }
     input.remove()
