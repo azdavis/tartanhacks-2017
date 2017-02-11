@@ -14,8 +14,9 @@ app.get("/", (req, res) => {
 })
 
 app.post("/train", (req, res) => {
-    const {data, results} = req.body
-    res.send(neuralNet.train(data, results))
+    const {d, r} = req.body
+    const {synapse0, synapse1} = neuralNet.train(d, r)
+    res.send({s0: synapse0._data, s1: synapse1._data})
 })
 
 app.use((req, res) => {
