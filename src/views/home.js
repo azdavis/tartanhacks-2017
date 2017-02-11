@@ -91,15 +91,35 @@ const two = (question, factors) => {
     const submitBtn = document.createElement("span")
     submitBtn.innerHTML = "submit data"
     submitBtn.className = "yellow"
-    submitBtn.onclick = threePrep()
+    submitBtn.onclick = threePrep
 
     footer.appendChild(addRowBtn)
     footer.appendChild(submitBtn)
     form.appendChild(footer)
 }
 
-const threePrep = () => {
-    console.log("ye")
+const toData = x => isGreen(x) ? 1 : 0
+const threePrep = e => {
+    e.preventDefault()
+    // a gross hack
+    // it would be better to use one of those fancy front-end libraries with
+    // two-way binding and whatnot
+    const fc = form.children
+    const max = fc.length - 1
+    const data = []
+    const res = []
+    // skip the header and footer
+    for (let i = 1; i < max; i++) {
+        const r = fc[i].children
+        const rMax = r.length - 1
+        const ary = []
+        for (let j = 0; j < rMax; j++) {
+            ary.push(toData(r[j]))
+        }
+        data.push(ary)
+        res.push(toData(r[rMax]))
+    }
+    console.log({data, res})
 }
 
 title.textContent = "machine learning™"
