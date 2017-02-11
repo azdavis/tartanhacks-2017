@@ -53,11 +53,11 @@ const addRow = n => isCalculated => () => {
             continue
         }
         el.className = "green"
-        el.textContent = "Y"
+        el.textContent = "1"
         el.onclick = () => {
             const ig = isGreen(el)
             el.className = ig ? "red" : "green"
-            el.textContent = ig ? "N" : "Y"
+            el.textContent = ig ? "0" : "1"
         }
     }
     form.insertBefore(row, form.lastChild)
