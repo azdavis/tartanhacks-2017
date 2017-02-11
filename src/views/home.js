@@ -62,6 +62,8 @@ const newRow = n => {
 
 const two = (question, factors) => {
     input.remove()
+    msg.textContent = "enter some data."
+    msg2.textContent = "click to add rows and switch between yes/no."
     const header = document.createElement("div")
     for (const x of [...factors, question]) {
         const el = document.createElement("span")
