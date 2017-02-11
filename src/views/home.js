@@ -107,7 +107,7 @@ const threePrep = e => {
     const fc = form.children
     const max = fc.length - 1
     const data = []
-    const res = []
+    const answers = []
     // skip the header and footer
     for (let i = 1; i < max; i++) {
         const r = fc[i].children
@@ -117,9 +117,9 @@ const threePrep = e => {
             ary.push(toData(r[j]))
         }
         data.push(ary)
-        res.push(toData(r[rMax]))
+        answers.push(toData(r[rMax]))
     }
-    console.log({data, res})
+    console.log({data, answers})
 }
 
 title.textContent = "machine learning™"
