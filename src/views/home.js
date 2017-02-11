@@ -93,18 +93,18 @@ const two = (question, factors) => {
     const thisAddRow = addRow(factors.length + 1)
     addRowBtn.onclick = thisAddRow(false)
 
-    const submitBtn = document.createElement("span")
-    submitBtn.innerHTML = "submit data"
-    submitBtn.className = "yellow"
-    submitBtn.onclick = threePrep(thisAddRow, addRowBtn, submitBtn)
+    const trainBtn = document.createElement("span")
+    trainBtn.innerHTML = "train"
+    trainBtn.className = "yellow"
+    trainBtn.onclick = threePrep(thisAddRow, addRowBtn, trainBtn)
 
     footer.appendChild(addRowBtn)
-    footer.appendChild(submitBtn)
+    footer.appendChild(trainBtn)
     form.appendChild(footer)
 }
 
 const toData = x => isGreen(x) ? 1 : 0
-const threePrep = (thisAddRow, addRowBtn, submitBtn) => e => {
+const threePrep = (thisAddRow, addRowBtn, trainBtn) => e => {
     e.preventDefault()
     // a gross hack
     // it would be better to use one of those fancy front-end libraries with
@@ -131,13 +131,13 @@ const threePrep = (thisAddRow, addRowBtn, submitBtn) => e => {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({d: data, r: results})
-    }).then(x => x.json()), thisAddRow, addRowBtn, submitBtn)
+    }).then(x => x.json()), thisAddRow, addRowBtn, trainBtn)
 }
 
-const three = (train, thisAddRow, addRowBtn, submitBtn) => {
+const three = (train, thisAddRow, addRowBtn, calcBtn) => {
     const pending = []
-    submitBtn.textContent = "calculate"
-    submitBtn.onclick = () => train.then(({s0, s1}) => {
+    calcBtn.textContent = "calculate"
+    calcBtn.onclick = () => train.then(({s0, s1}) => {
         for (const p of pending) {
             p.className = "grayed"
             const data = []
