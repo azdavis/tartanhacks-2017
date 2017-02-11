@@ -1,5 +1,7 @@
 "use strict"
 
+const row = require("./row")
+
 const title = document.getElementById("title")
 const msg = document.getElementById("msg")
 const msg2 = document.getElementById("msg2")
@@ -8,15 +10,6 @@ const input = document.getElementById("input")
 
 let question = ""
 let factors = []
-
-function row(n) {
-    const row = document.createElement("div")
-    for (let i = 0; i < n; i++) {
-        const elem = document.createElement("span")
-        row.appendChild(elem)
-    }
-    return row
-}
 
 const one = e => {
     e.preventDefault()
