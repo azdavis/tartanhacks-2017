@@ -76,7 +76,7 @@ let minSynapse1
 let minSynapse2
 
 const hlSizes = [(x.size())[1], (x.size())[1] - 1, (x.size())[1] + 1]
-const alphas = [0.1, 1, 10]
+const alphas = [0.01, 0.1, 1]
 const dropout_percent = 0.2;
 
 let count = 1;
