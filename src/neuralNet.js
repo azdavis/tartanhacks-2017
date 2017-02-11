@@ -116,8 +116,8 @@ function get(input, w0, w1) {
     let synapse0 = math.matrix(w0)
     let synapse1 = math.matrix(w1)
     let x = math.matrix(input)
-    let testl1 = math.multiply(testX, minSynapse0).map(sigmoid)
-    return math.multiply(test, minSynapse1).map(sigmoid)
+    let testl1 = math.multiply(x, synapse0).map(sigmoid)
+    return math.multiply(testl1, synapse1).map(sigmoid)
 }
 
 
