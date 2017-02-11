@@ -4,7 +4,7 @@
   "description": "do something with machine learning",
   "main": "src/index.js",
   "scripts": {
-    "start": "webpack --optimize-minimize && stylus -c src/views && node src/index.js"
+    "start": "webpack --optimize-minimize && stylus -u autoprefixer-stylus -c src/views && node src/index.js"
   },
   "author": "Ariel Davis <ariel.z.davis@icloud.com>",
   "license": "ISC",
@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/azdavis/tartanhacks-2017#readme",
   "devDependencies": {
+    "autoprefixer-stylus": "^0.13.0",
     "babel-core": "^6.22.1",
     "babel-loader": "^6.2.10",
     "babel-preset-es2015": "^6.22.0",
