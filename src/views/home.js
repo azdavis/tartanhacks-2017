@@ -108,6 +108,7 @@ const two = (question, factors) => {
     form.appendChild(footer)
 }
 
+const toJsonOrError = x => x.ok ? x.json() : Promise.reject(x.statusText)
 const toData = x => isGreen(x) ? 1 : 0
 const threePrep = (thisAddRow, addRowBtn, trainBtn) => e => {
     e.preventDefault()
@@ -136,7 +137,7 @@ const threePrep = (thisAddRow, addRowBtn, trainBtn) => e => {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({d: data, r: results})
-    }).then(x => x.json()), thisAddRow, addRowBtn, trainBtn)
+    }).then(toJsonOrError), thisAddRow, addRowBtn, trainBtn)
 }
 
 const three = (train, thisAddRow, addRowBtn, calcBtn) => {
@@ -162,7 +163,7 @@ const three = (train, thisAddRow, addRowBtn, calcBtn) => {
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({d: data, s0, s1})
                 })
-                .then(x => x.json())
+                .then(toJsonOrError)
                 .then(({r}) => {
                     p.lastChild.className = r > 0.5 ? "green" : "red"
                     p.lastChild.textContent = r.toFixed(4)
