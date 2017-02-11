@@ -1,12 +1,13 @@
 const math = require('mathjs')
 
 // Math functions for nonlinearity
-function sigmoid(value) {
-    return 1/(1+math.pow(math.e, -value))
+function sigmoid(val) {
+    return 1/(1+math.pow(math.e, -val))
 }
 
-function deriv(y) {
-    return y * (1-y)
+// derivative of sigmoid
+function deriv(val) {
+    return val * (1-val)
 }
 
 // both arrays must be of the same length
@@ -16,6 +17,8 @@ function multiplyElements(arr1, arr2) {
     })
     return arr1
 }
+
+// TODO: make a function that sets x and y
 
 // Input Data
 const x = math.matrix([[0, 0, 1],
@@ -27,25 +30,24 @@ const x = math.matrix([[0, 0, 1],
 const y = math.transpose(math.matrix([[0, 0, 1, 1]]))
 
 // Weights
-let syn0 = math.random([3,1], -1, 1)
+let synapse0 = math.random([3,1], -1, 1)
 
-const l0 = x
-let l1
-let l1_error
-let l1_delta
+const layer0 = x
+let layer1
+let layer1_error
+let layer1_delta
 
 for (let i = 0; i < 60000; i++) {
     // forward propagation
-    l1 = math.multiply(l0, syn0).map(sigmoid)
-    // how much did we miss?
-    l1_error = math.subtract(y, l1)
+    layer1 = math.multiply(layer0, synapse0).map(sigmoid)
+    // compare estimate with actual output
+    layer1_error = math.subtract(y, layer1)
     // multiply how much we missed by the
-    // slope of the sigmoid at the values in l1
-    l1_delta = multiplyElements(l1_error, l1.map(deriv))
+    // slope of the sigmoid at the values in layer1
+    layer1_delta = multiplyElements(layer1_error, layer1.map(deriv))
     // update weights
-    let t = math.transpose(l0)
-    let m = math.multiply(t, l1_delta)
-    syn0 = math.add(syn0, m)
+    synapse0 = math.add(synapse0, math.multiply(math.transpose(layer0), layer1_delta))
 }
 
-console.log(l1)
+// final estimates
+console.log(layer1)
