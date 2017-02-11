@@ -117,15 +117,15 @@ const threePrep = (thisAddRow, addRowBtn, submitBtn) => e => {
     for (let i = 1; i < max; i++) {
         fc[i].className = "grayed"
         const elems = fc[i].children
-        const rMax = elems.length - 1
+        const max = elems.length - 1
         const ary = []
-        for (let j = 0; j < rMax; j++) {
+        for (let j = 0; j < max; j++) {
             elems[j].onclick = null
             ary.push(toData(elems[j]))
         }
-        elems[rMax].onclick = null
+        elems[max].onclick = null
         data.push(ary)
-        results.push(toData(elems[rMax]))
+        results.push(toData(elems[max]))
     }
     three(fetch("/train", {
         method: "POST",
