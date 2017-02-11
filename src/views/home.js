@@ -115,6 +115,7 @@ const threePrep = e => {
     // skip the header and footer
     for (let i = 1; i < max; i++) {
         const r = fc[i].children
+        r.className = "grayed"
         const rMax = r.length - 1
         const ary = []
         for (let j = 0; j < rMax; j++) {
