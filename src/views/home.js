@@ -41,10 +41,15 @@ const twoPrep = question => e => {
 }
 
 const isGreen = x => x.className === "green"
-const newRow = n => {
+const addRow = n => isCalculated => () => {
     const row = document.createElement("div")
     for (let i = 0; i < n; i++) {
         const el = document.createElement("span")
+        if (isCalculated && i === n - 1) {
+            el.className = "gray"
+            el.textContent = "?"
+            return
+        }
         el.className = "green"
         el.textContent = "y"
         el.onclick = () => {
@@ -54,7 +59,7 @@ const newRow = n => {
         }
         row.appendChild(el)
     }
-    return row
+    form.insertBefore(row, form.lastChild)
 }
 
 const two = (question, factors) => {
@@ -84,9 +89,8 @@ const two = (question, factors) => {
     const addRowBtn = document.createElement("span")
     addRowBtn.innerHTML = "add datapoint"
     addRowBtn.className = "gray"
-    addRowBtn.onclick = () => {
-        form.insertBefore(newRow(factors.length + 1), footer)
-    }
+    const thisAddRow = addRow(factors.length + 1)
+    addRowBtn.onclick = thisAddRow(false)
 
     const submitBtn = document.createElement("span")
     submitBtn.innerHTML = "submit data"
