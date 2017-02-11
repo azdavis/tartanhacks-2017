@@ -36,7 +36,7 @@ function getAveError(m1) {
 // Input Data
 function train(inputData, inputResults) {
     const x = math.matrix(inputData)
-    const y = math.matrix(inputResults)
+    const y = math.transpose(math.matrix(inputResults))
 
     const layer0 = x
     let layer1
@@ -56,7 +56,7 @@ function train(inputData, inputResults) {
     // Gradient descent and dropout optimization variables
     const hlSizes = [(x.size())[1], (x.size())[1] - 1, (x.size())[1] + 1]
     const alphas = [0.1, 1, 10]
-    const dropout_percent = 0.2;
+    const dropout_percent = 0.2
 
     for (let alphaIndex = 0; alphaIndex < 3; alphaIndex++) {
 
@@ -108,9 +108,10 @@ function train(inputData, inputResults) {
 
 // Test Train
 // console.log(train([[0, 0, 1],
-//                      [0, 1, 1],
-//                      [1, 0, 1],
-//                      [1, 1, 1]], [[0], [0], [1], [1]]))
+//                  [0, 1, 1],
+//                  [1, 0, 1],
+//                  [1, 1, 1]], [[0, 0, 1, 1]]))
+
 
 // console.log("Output of training data after training")
 // let test = math.multiply(x, minSynapse0).map(sigmoid)
