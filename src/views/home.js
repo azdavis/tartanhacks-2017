@@ -179,6 +179,6 @@ const three = (train, thisAddRow, addRowBtn, calcBtn) => {
 title.textContent = "Stairwell"
 msg.textContent = "What is your question for today?"
 msg2.textContent = "It should be a yes/no question."
-input.focus()
 form.onsubmit = onePrep
 form.style.display = "block"
+input.focus()
