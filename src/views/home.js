@@ -34,7 +34,7 @@ const twoPrep = question => e => {
         return
     }
     if (factors.length < 2) {
-        msg2.textContent = "You can't less than 2 factors."
+        msg2.textContent = "You can't have less than 2 factors."
         return
     }
     if (factors.length > 7) {
