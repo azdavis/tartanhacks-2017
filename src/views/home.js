@@ -5,8 +5,6 @@ const form = document.getElementById("form")
 const input = document.getElementById("input")
 
 function one() {
-    msg.innerHTML = "what is your question for today?"
-    msg2.innerHTML = "it should be a yes/no question."
     form.onsubmit = e => {
         e.preventDefault()
         input.value = ""
@@ -39,7 +37,8 @@ function three(factors) {
 }
 
 title.innerHTML = "machine learning™"
-form.style.display = "block"
+msg.innerHTML = "what is your question for today?"
+msg2.innerHTML = "it should be a yes/no question."
 input.focus()
-
+form.style.display = "block"
 one()
