@@ -8,29 +8,29 @@ const msg2 = document.getElementById("msg2")
 const form = document.getElementById("form")
 const input = document.getElementById("input")
 
-let question = ""
-let factors = []
-
-const one = e => {
+const onePrep = () => e => {
     e.preventDefault()
     if (input.value.trim() === "") {
         msg2.textContent = "that can't be empty."
         return
     }
-    question = input.value
+    one(input.value)
+}
+
+const one = question => {
     input.value = ""
     msg.textContent = `what are some factors that affect '${question}'?`
     msg2.textContent = "they should also be yes/no, and separated with commas."
-    form.onsubmit = two
+    form.onsubmit = twoPrep(question)
 }
 
-const two = e => {
+const twoPrep = question => e => {
     e.preventDefault()
     if (input.value.trim() === "") {
         msg2.textContent = "that can't be empty."
         return
     }
-    factors = input.value.split(",").map(x => x.trim())
+    const factors = input.value.split(",").map(x => x.trim())
     if (factors.find(x => x === "") !== undefined) {
         msg2.textContent = "you can't have an empty factor."
         return
@@ -39,6 +39,10 @@ const two = e => {
         msg2.textContent = "you can't have more than 7 factors."
         return
     }
+    two(question, factors)
+}
+
+const two = (question, factors) => {
     input.remove()
     const header = row(factors.length + 1)
     let i
@@ -53,5 +57,5 @@ title.textContent = "machine learning™"
 msg.textContent = "what is your question for today?"
 msg2.textContent = "it should be a yes/no question."
 input.focus()
-form.onsubmit = one
+form.onsubmit = onePrep()
 form.style.display = "block"
