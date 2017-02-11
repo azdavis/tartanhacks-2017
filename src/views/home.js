@@ -45,14 +45,14 @@ const newRow = n => {
     for (let i = 0; i < n; i++) {
         const el = document.createElement("span")
         el.className = "green"
-        el.textContent = "yes"
+        el.textContent = "y"
         el.onclick = () => {
             if (el.className === "green") {
                 el.className = "red"
-                el.textContent = "no"
+                el.textContent = "n"
             } else {
                 el.className = "green"
-                el.textContent = "yes"
+                el.textContent = "y"
             }
         }
         row.appendChild(el)
