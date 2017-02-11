@@ -171,7 +171,7 @@ const three = (train, thisAddRow, addRowBtn, calcBtn) => {
     }
 }
 
-title.textContent = "machine learning™"
+title.textContent = "Stairwell"
 msg.textContent = "what is your question for today?"
 msg2.textContent = "it should be a yes/no question."
 input.focus()
