@@ -27,7 +27,7 @@ function getAveError(m1) {
     let len = (m1.size())[1]
 
     for (let i = 0; i < len; i++) {
-        sum += m1.subset(math.index(0,i))
+        sum += math.abs(m1.subset(math.index(0,i)))
     }
     return math.abs(sum / len)
 }
