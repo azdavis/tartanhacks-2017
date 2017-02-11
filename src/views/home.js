@@ -72,7 +72,7 @@ const two = (question, factors) => {
     form.appendChild(header)
     const addRowBtn = document.createElement("div")
     addRowBtn.className = "gray"
-    addRowBtn.textContent = "add row"
+    addRowBtn.innerHTML = "<span>add row</span>"
     addRowBtn.onclick = () => {
         form.insertBefore(newRow(factors.length + 1), addRowBtn)
     }
