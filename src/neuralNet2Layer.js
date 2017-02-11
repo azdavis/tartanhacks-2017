@@ -61,6 +61,8 @@ const hlSizes = [(x.size())[1], (x.size())[1] - 1, (x.size())[1] + 1]
 const alphas = [0.1, 1, 10]
 const dropout_percent = 0.2;
 
+let count = 1;
+
 for (let alphaIndex = 0; alphaIndex < 3; alphaIndex++) {
 
     // Iterate over 3 hidden layer sizes to get the best one
@@ -71,11 +73,16 @@ for (let alphaIndex = 0; alphaIndex < 3; alphaIndex++) {
         synapse0 = math.random([3, hiddenLayerSize], -1, 1)
         synapse1 = math.random([hiddenLayerSize, 1], -1, 1)
 
-        for (let i = 0; i < 60000; i++) {
+        for (let i = 0; i < 40000; i++) {
             // forward propagation
             layer1 = math.multiply(layer0, synapse0).map(sigmoid)
             // dropout
-            layer1 *= math.random([x.size()[0], hiddenLayerSize]) * 1.0/(1-dropout_percent)
+            layer1.forEach(function(index) {
+                let rand = math.random()
+                if(rand < dropout_percent)
+                    layer1[index] = 0
+                layer1[index] *= 1.0/(1-dropout_percent)
+            })
             layer2 = math.multiply(layer1, synapse1).map(sigmoid)
             // compare estimate with actual output
             layer2_error = math.subtract(y, layer2)
@@ -89,6 +96,13 @@ for (let alphaIndex = 0; alphaIndex < 3; alphaIndex++) {
             // update weights
             synapse0 = math.add(synapse0, math.multiply(math.transpose(layer0), layer1_delta))
             synapse1 = math.add(synapse1, math.multiply(math.transpose(layer1), layer2_delta))
+            if(i % 10000 == 0) {
+                if (i == 0) {
+                    console.log(count)
+                    count++
+                } 
+                console.log(i)
+            }
         }
         let currentError = getAveError(layer2_error)
         if (currentError < minError) {
