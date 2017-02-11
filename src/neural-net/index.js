@@ -56,14 +56,6 @@ function train(inputData, inputResults) {
             for (let i = 0; i < 40000; i++) {
                 // forward propagation
                 layer1 = math.multiply(layer0, synapse0).map(sigmoid)
-                // dropout
-                layer1.forEach(index => {
-                    let rand = math.random()
-                    if (rand < dropout_percent) {
-                        layer1[index] = 0
-                    }
-                    layer1[index] *= 1.0/(1-dropout_percent)
-                })
                 layer2 = math.multiply(layer1, synapse1).map(sigmoid)
                 // compare estimate with actual output
                 layer2_error = math.subtract(y, layer2)
