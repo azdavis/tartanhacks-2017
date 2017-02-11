@@ -15,7 +15,18 @@ function one() {
 }
 
 function two() {
-    msg.innerHTML = "hey"
+    msg.innerHTML = "what are some factors that affect that question?"
+    msg2.innerHTML = "separate them with commas (',')."
+    form.onsubmit = e => {
+        e.preventDefault()
+        three(input.value)
+        form.remove()
+    }
+}
+
+function three(factors) {
+    factors = factors.split(",").map(x => x.trim())
+    msg.innerHTML = "what the heck"
 }
 
 title.innerHTML = "machine learning™"
