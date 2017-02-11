@@ -19,6 +19,7 @@ function two() {
 }
 
 title.innerHTML = "machine learning™"
+form.style.display = "block"
 input.focus()
 
 one()
