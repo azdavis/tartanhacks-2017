@@ -42,7 +42,6 @@ const x = math.matrix([[0, 0, 1],
 // Output Data
 const y = math.transpose(math.matrix([[0, 0, 1, 1]]))
 
-
 const layer0 = x
 let layer1
 let layer1_error
@@ -110,3 +109,8 @@ testX = math.matrix([[1, 1, 0]])
 console.log("Output of [1,1,0]")
 testl1 = math.multiply(testX, minSynapse0).map(sigmoid)
 console.log(math.multiply(testl1, minSynapse1).map(sigmoid))
+
+console.log("Final Synapse0")
+console.log(minSynapse0)
+console.log("Final Synapse1")
+console.log(minSynapse1)
