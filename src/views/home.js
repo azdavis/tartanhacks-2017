@@ -137,7 +137,7 @@ const threePrep = (thisAddRow, addRowBtn, trainBtn) => e => {
 
 const three = (train, thisAddRow, addRowBtn, calcBtn) => {
     msg.textContent = "Now add some data for which you don't know the answer."
-    msg2.textContent = "Use the calculate button to make an educated guess."
+    msg2.textContent = "Use the calculate button to get the likely result."
     const pending = []
     calcBtn.textContent = "Calculate"
     calcBtn.onclick = () => {
