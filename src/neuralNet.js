@@ -42,8 +42,7 @@ for (let i = 0; i < 60000; i++) {
     layer1 = math.multiply(layer0, synapse0).map(sigmoid)
     // compare estimate with actual output
     layer1_error = math.subtract(y, layer1)
-    // multiply how much we missed by the
-    // slope of the sigmoid at the values in layer1
+    // use slope of sigmoid to update values
     layer1_delta = multiplyElements(layer1_error, layer1.map(deriv))
     // update weights
     synapse0 = math.add(synapse0, math.multiply(math.transpose(layer0), layer1_delta))
