@@ -81,13 +81,28 @@ const two = (question, factors) => {
     header.appendChild(el)
 
     form.appendChild(header)
-    const addRowBtn = document.createElement("div")
+
+    const footer = document.createElement("div")
+
+    const addRowBtn = document.createElement("span")
+    addRowBtn.innerHTML = "add datapoint"
     addRowBtn.className = "gray"
-    addRowBtn.innerHTML = "<span>add datapoint</span>"
     addRowBtn.onclick = () => {
-        form.insertBefore(newRow(factors.length + 1), addRowBtn)
+        form.insertBefore(newRow(factors.length + 1), footer)
     }
-    form.appendChild(addRowBtn)
+
+    const submitBtn = document.createElement("span")
+    submitBtn.innerHTML = "submit data"
+    submitBtn.className = "yellow"
+    submitBtn.onclick = threePrep()
+
+    footer.appendChild(addRowBtn)
+    footer.appendChild(submitBtn)
+    form.appendChild(footer)
+}
+
+const threePrep = () => {
+    console.log("ye")
 }
 
 title.textContent = "machine learning™"
