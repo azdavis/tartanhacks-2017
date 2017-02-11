@@ -19,14 +19,23 @@ function two() {
     msg2.innerHTML = "separate them with commas (',')."
     form.onsubmit = e => {
         e.preventDefault()
-        three(input.value)
+        const factors = input.value.split(",").map(x => x.trim())
+        if (factors.length > 10) {
+            msg2.innerHTML = "that's too many factors."
+            return
+        }
+        if (factors.find(x => x === "") !== undefined) {
+            msg2.innerHTML = "you can't have an empty factor."
+            return
+        }
         form.remove()
+        three(factors)
     }
 }
 
 function three(factors) {
-    factors = factors.split(",").map(x => x.trim())
     msg.innerHTML = "what the heck"
+    console.log(factors)
 }
 
 title.innerHTML = "machine learning™"
