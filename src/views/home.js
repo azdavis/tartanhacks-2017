@@ -107,7 +107,7 @@ const threePrep = e => {
     const fc = form.children
     const max = fc.length - 1
     const data = []
-    const answers = []
+    const results = []
     // skip the header and footer
     for (let i = 1; i < max; i++) {
         const r = fc[i].children
@@ -117,15 +117,15 @@ const threePrep = e => {
             ary.push(toData(r[j]))
         }
         data.push(ary)
-        answers.push(toData(r[rMax]))
+        results.push(toData(r[rMax]))
     }
-    console.log({data, answers})
+    console.log({data, results})
     fetch("/train", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify({data, answers})
+        body: JSON.stringify({data, results})
     })
     .then(x => x.json())
     .then(x => console.log(x))
