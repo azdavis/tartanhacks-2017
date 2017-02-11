@@ -47,27 +47,28 @@ for (let i = 0; i < 60000; i++) {
     layer1 = math.multiply(layer0, synapse0).map(sigmoid)
     layer2 = math.multiply(layer1, synapse1).map(sigmoid)
     // compare estimate with actual output
+    layer2_error = math.subtract(y, layer2)
+    // use slope of sigmoid to update values
+    layer2_delta = multiplyElements(layer2_error, layer2.map(deriv))
+    // distribute error over synapse 1
     layer1_error = math.multiply(layer2_delta, math.transpose(synapse1))
     // use slope of sigmoid to update values
     layer1_delta = multiplyElements(layer1_error, layer1.map(deriv))
     // compare estimate with actual output
-    layer2_error = math.subtract(y, layer2)
-    // use slope of sigmoid to update values
-    layer2_delta = multiplyElements(layer2_error, layer2.map(deriv))
     // update weights
     synapse0 = math.add(synapse0, math.multiply(math.transpose(layer0), layer1_delta))
     synapse1 = math.add(synapse1, math.multiply(math.transpose(layer1), layer2_delta))
 }
 console.log("Output of training data after training")
-console.log(l2)
+console.log(layer2)
 
 // Test Cases for function
 let testX = math.matrix([[0, 1, 0]])
 console.log("Output of [0,1,0]")
-let testl1 = math.multiply(testX, syn0).map(sigmoid)
-console.log(math.multiply(testl1, syn1).map(sigmoid))
+let testl1 = math.multiply(testX, synapse0).map(sigmoid)
+console.log(math.multiply(testl1, synapse1).map(sigmoid))
 
 testX = math.matrix([[1, 1, 0]])
 console.log("Output of [1,1,0]")
-testl1 = math.multiply(testX, syn0).map(sigmoid)
-console.log(math.multiply(testl1, syn1).map(sigmoid))
+testl1 = math.multiply(testX, synapse0).map(sigmoid)
+console.log(math.multiply(testl1, synapse1).map(sigmoid))
