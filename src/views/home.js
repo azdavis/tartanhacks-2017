@@ -127,9 +127,7 @@ const threePrep = (thisAddRow, addRowBtn, submitBtn) => e => {
     }
     three(fetch("/train", {
         method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({d: data, r: results})
     }).then(x => x.json()), thisAddRow, addRowBtn, submitBtn)
 }
