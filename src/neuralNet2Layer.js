@@ -45,8 +45,8 @@ for (let i = 0; i < 60000; i++) {
 
     l1_delta = math.multiply(l1_error, deriv(l1)) // multiply every element
     // update weights
-    syn1 = math.add(math.multiply(math.transpose(l0),l2_delta))
-    syn0 = math.add(math.multiply(math.transpose(l0),l1_delta))
+    syn1 = math.add(math.multiply(math.transpose(l0),l2_delta), syn1)
+    syn0 = math.add(math.multiply(math.transpose(l0),l1_delta), syn0)
 
 }
 
