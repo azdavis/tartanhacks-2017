@@ -13,6 +13,10 @@ app.get("/", (req, res) => {
     res.render("home")
 })
 
+app.get("/tutorial", (req, res) => {
+    res.render("tutorial")
+})
+
 app.post("/train", (req, res) => {
     const {d, r} = req.body
     const {synapse0, synapse1} = neuralNet.train(d, r)

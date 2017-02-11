@@ -1,0 +1,63 @@
+extends layout
+
+block head
+    title Tutorial
+    style: include ./tutorial.css
+
+block body
+    h1.
+        Stairwell: How it works
+    h2.
+        What is a question made of?
+    ul
+        li.
+            Factors that contribute to the result
+        li.
+            Answer
+    h2.
+        What are the parts of the neural net?
+    ul
+        li.
+            Input: The input is the data entered into the system. It consists
+            of whether or not a factor is present in each trial, as well as the
+            corresponding answer.
+        li.
+            Weights: The weights change the impact each factor has on the final
+            result.
+        li.
+            Result: When the weights are applied to the input, it calculates
+            the result. This is the answer to the question!
+    h2.
+        How does training begin?
+    ul
+        li.
+            The initial data from the user is what is used to train the neural
+            net.
+        li.
+            This data is split into the input, which are the factors, and the
+            results, which are the answers.
+        li.
+            The weights are initialized by generating a set of random values.
+    h2.
+        How does the neural net learn the data?
+    ul
+        li.
+            Forward Propagation: The loop first executes forward propagation,
+            using the weights to calculate the estimated results.
+        li.
+            Back Propagation: This involves updating the weights based on how
+            far the results were from  the real answers, factoring in the
+            confidence of  the returned result.
+        li.
+            Completion: Once the weights have been tuned to the data set, the
+            neural net has   successfully learned to interpret inputs for the
+            particular question.
+    h2.
+        How is the neural net used?
+    ul
+        li.
+            The user inputs another row of data, which is then sent to the
+            neural net.
+        li.
+            The neural net uses the set of weights that it has learned to
+            calculate what it thinks the result of the new input should be.
