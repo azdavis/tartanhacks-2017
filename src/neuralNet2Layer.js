@@ -62,5 +62,12 @@ for (let i = 0; i < 60000; i++) {
     let m1 = math.multiply(t1, l2_delta)
     syn1 = math.add(syn1, m1)
 }
-
+console.log("Output of training data after training")
 console.log(l2)
+
+// Test Cases for function
+const testX = math.matrix([[0, 1, 0]])
+console.log("Output of [0,1,0]")
+const testl1 = math.multiply(testX, syn0).map(sigmoid)
+console.log(math.multiply(testl1, syn1).map(sigmoid))
+
