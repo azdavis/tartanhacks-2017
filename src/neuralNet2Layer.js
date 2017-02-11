@@ -1,3 +1,5 @@
+"use strict"
+
 const math = require("mathjs")
 
 // Math functions for nonlinearity
