@@ -20,7 +20,7 @@ const two = e => {
         return
     }
     if (factors.length > 10) {
-        msg2.innerHTML = "that's too many factors."
+        msg2.innerHTML = "you can't have more than 10 factors."
         return
     }
     form.remove()
