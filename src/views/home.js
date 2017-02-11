@@ -44,14 +44,14 @@ const newRow = n => {
     const row = document.createElement("div")
     for (let i = 0; i < n; i++) {
         const el = document.createElement("span")
-        el.className = "g"
+        el.className = "green"
         el.textContent = "yes"
         el.onclick = () => {
-            if (el.className === "g") {
-                el.className = "r"
+            if (el.className === "green") {
+                el.className = "red"
                 el.textContent = "no"
             } else {
-                el.className = "g"
+                el.className = "green"
                 el.textContent = "yes"
             }
         }
@@ -69,12 +69,12 @@ const two = (question, factors) => {
     for (const x of factors) {
         el = document.createElement("span")
         el.textContent = x
-        el.className = "b"
+        el.className = "blue"
         header.appendChild(el)
     }
     el = document.createElement("span")
     el.textContent = question
-    el.className = "y"
+    el.className = "cyan"
     header.appendChild(el)
     form.appendChild(header)
     const addRowBtn = document.createElement("div")
