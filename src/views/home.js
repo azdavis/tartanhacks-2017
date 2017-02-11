@@ -152,7 +152,7 @@ const three = (train, thisAddRow, addRowBtn, calcBtn) => {
                 data.push(toData(elems[j]))
             }
             p.lastChild.textContent = "..."
-            train.then(({s0, s1}) => {
+            train.then(({s0, s1}) =>
                 fetch("/get", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
@@ -163,7 +163,7 @@ const three = (train, thisAddRow, addRowBtn, calcBtn) => {
                     p.lastChild.className = r > 0.5 ? "green" : "red"
                     p.lastChild.textContent = r.toFixed(4)
                 })
-            }).catch(x => alert(`Error: ${x}`))
+            ).catch(x => alert(`Error: ${x}`))
         }
     }
     thisAddRow = thisAddRow(true)
