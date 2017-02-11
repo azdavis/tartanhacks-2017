@@ -25,10 +25,11 @@ function getAveError(m1) {
     let sum = 0
     m1 = math.transpose(m1)
     let len = (m1.size())[1]
+
     for (let i = 0; i < len; i++) {
-        sum += m1[0][i]
+        sum += m1.subset(math.index(0,i))
     }
-    return sum / len
+    return math.abs(sum / len)
 }
 // TODO: make a function that sets x and y
 
@@ -49,14 +50,15 @@ let layer1_delta
 let layer2
 let layer2_error
 let layer2_delta
-let synapse0
-let syanpse1
 let hiddenLayerSize
 let error
+let minError = 100
+let synapse0
+let synapse1
 
 const hlSizes = [(x.size())[1], (x.size())[1] - 1, (x.size())[1] + 1]
 
-for (hlSizeIndex = 0; hlSizeIndex < 3; hlSizeIndex++) {
+for (let hlSizeIndex = 0; hlSizeIndex < 3; hlSizeIndex++) {
 
     // Weights
     hiddenLayerSize = hlSizes[hlSizeIndex]
@@ -80,8 +82,7 @@ for (hlSizeIndex = 0; hlSizeIndex < 3; hlSizeIndex++) {
         synapse0 = math.add(synapse0, math.multiply(math.transpose(layer0), layer1_delta))
         synapse1 = math.add(synapse1, math.multiply(math.transpose(layer1), layer2_delta))
     }
-    getAveError(layer2_error)
-    //print ("Error:" + str(np.mean(np.abs(l2_error))))
+    console.log(getAveError(layer2_error))
 }
 console.log("Output of training data after training")
 console.log(layer2)
