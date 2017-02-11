@@ -64,18 +64,22 @@ const two = (question, factors) => {
     input.remove()
     msg.textContent = "enter some data."
     msg2.textContent = "click to add rows and switch between yes/no."
+
     const header = document.createElement("div")
     let el
+
     for (const x of factors) {
         el = document.createElement("span")
         el.textContent = x
         el.className = "blue"
         header.appendChild(el)
     }
+
     el = document.createElement("span")
     el.textContent = question
     el.className = "cyan"
     header.appendChild(el)
+
     form.appendChild(header)
     const addRowBtn = document.createElement("div")
     addRowBtn.className = "gray"
