@@ -9,6 +9,15 @@ const input = document.getElementById("input")
 let question = ""
 let factors = []
 
+function row(n) {
+    const row = document.createElement("div")
+    for (let i = 0; i < n; i++) {
+        const elem = document.createElement("span")
+        row.appendChild(elem)
+    }
+    return row
+}
+
 const one = e => {
     e.preventDefault()
     msg.textContent = "what are some factors that affect that question?"
@@ -29,7 +38,14 @@ const two = e => {
         msg2.textContent = "you can't have more than 10 factors."
         return
     }
-    form.remove()
+    input.remove()
+    const header = row(factors.length + 1)
+    let i
+    for (i = 0; i < factors.length; i++) {
+        header.children[i].textContent = factors[i]
+    }
+    header.children[i].textContent = question
+    form.appendChild(header)
 }
 
 title.textContent = "machine learning™"
