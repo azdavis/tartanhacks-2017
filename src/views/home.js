@@ -20,6 +20,10 @@ function row(n) {
 
 const one = e => {
     e.preventDefault()
+    if (input.value.trim() === "") {
+        msg2.textContent = "please enter something."
+        return
+    }
     msg.textContent = "what are some factors that affect that question?"
     msg2.textContent = "separate them with commas (',')."
     question = input.value
@@ -29,6 +33,10 @@ const one = e => {
 
 const two = e => {
     e.preventDefault()
+    if (input.value.trim() === "") {
+        msg2.textContent = "please enter something."
+        return
+    }
     factors = input.value.split(",").map(x => x.trim())
     if (factors.find(x => x === "") !== undefined) {
         msg2.textContent = "you can't have an empty factor."
