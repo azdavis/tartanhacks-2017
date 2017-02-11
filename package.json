@@ -4,7 +4,8 @@
   "description": "do something with machine learning",
   "main": "src/index.js",
   "scripts": {
-    "start": "webpack --optimize-minimize && stylus -u autoprefixer-stylus -c src/views && node src/index.js",
+    "build": "webpack --optimize-minimize && stylus -u autoprefixer-stylus -c src/views",
+    "start": "npm run build && node src/index.js",
     "clean": "find . '(' -name '*.css' -o -name '*.min.js' ')' -delete"
   },
   "author": "Ariel Davis <ariel.z.davis@icloud.com>",
