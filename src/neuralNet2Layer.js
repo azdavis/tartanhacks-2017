@@ -27,8 +27,9 @@ const x = math.matrix([[0, 0, 1],
 const y = math.transpose(math.matrix([[0, 0, 1, 1]]))
 
 // Weights
-let syn0 = math.random([3,4], -1, 1)
-let syn1 = math.random([4,1], -1, 1)
+const hiddenLayerSize = 4
+let syn0 = math.random([3, hiddenLayerSize], -1, 1)
+let syn1 = math.random([hiddenLayerSize, 1], -1, 1)
 
 const l0 = x
 let l1
