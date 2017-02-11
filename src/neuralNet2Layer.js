@@ -59,36 +59,41 @@ let minSynapse0
 let minSynapse1
 
 const hlSizes = [(x.size())[1], (x.size())[1] - 1, (x.size())[1] + 1]
+const alphas = [0.1, 1, 10]
 
-for (let hlSizeIndex = 0; hlSizeIndex < 3; hlSizeIndex++) {
+for (let alphaIndex = 0; alphaIndex < 3; alphaIndex++) {
 
-    // Weights
-    hiddenLayerSize = hlSizes[hlSizeIndex]
-    synapse0 = math.random([3, hiddenLayerSize], -1, 1)
-    synapse1 = math.random([hiddenLayerSize, 1], -1, 1)
+    // Iterate over 3 hidden layer sizes to get the best one
+    for (let hlSizeIndex = 0; hlSizeIndex < 3; hlSizeIndex++) {
 
-    for (let i = 0; i < 60000; i++) {
-        // forward propagation
-        layer1 = math.multiply(layer0, synapse0).map(sigmoid)
-        layer2 = math.multiply(layer1, synapse1).map(sigmoid)
-        // compare estimate with actual output
-        layer2_error = math.subtract(y, layer2)
-        // use slope of sigmoid to update values
-        layer2_delta = multiplyElements(layer2_error, layer2.map(deriv))
-        // distribute error over synapse 1
-        layer1_error = math.multiply(layer2_delta, math.transpose(synapse1))
-        // use slope of sigmoid to update values
-        layer1_delta = multiplyElements(layer1_error, layer1.map(deriv))
-        // compare estimate with actual output
-        // update weights
-        synapse0 = math.add(synapse0, math.multiply(math.transpose(layer0), layer1_delta))
-        synapse1 = math.add(synapse1, math.multiply(math.transpose(layer1), layer2_delta))
-    }
-    let currentError = getAveError(layer2_error)
-    if (currentError < minError) {
-        minError = currentError
-        minSynapse1 = synapse1
-        minSynapse0 = synapse0
+        // Weights
+        hiddenLayerSize = hlSizes[hlSizeIndex]
+        synapse0 = math.random([3, hiddenLayerSize], -1, 1)
+        synapse1 = math.random([hiddenLayerSize, 1], -1, 1)
+
+        for (let i = 0; i < 60000; i++) {
+            // forward propagation
+            layer1 = math.multiply(layer0, synapse0).map(sigmoid)
+            layer2 = math.multiply(layer1, synapse1).map(sigmoid)
+            // compare estimate with actual output
+            layer2_error = math.subtract(y, layer2)
+            // use slope of sigmoid to update values
+            layer2_delta = multiplyElements(layer2_error, layer2.map(deriv))
+            // distribute error over synapse 1
+            layer1_error = math.multiply(layer2_delta, math.transpose(synapse1))
+            // use slope of sigmoid to update values
+            layer1_delta = multiplyElements(layer1_error, layer1.map(deriv))
+            // compare estimate with actual output
+            // update weights
+            synapse0 = math.add(synapse0, math.multiply(math.transpose(layer0), layer1_delta))
+            synapse1 = math.add(synapse1, math.multiply(math.transpose(layer1), layer2_delta))
+        }
+        let currentError = getAveError(layer2_error)
+        if (currentError < minError) {
+            minError = currentError
+            minSynapse1 = synapse1
+            minSynapse0 = synapse0
+        }
     }
 }
 console.log("Output of training data after training")
