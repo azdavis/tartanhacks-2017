@@ -19,25 +19,13 @@ function getAveError(m1) {
 // TODO: make a function that sets x and y
 
 // Input Data
-const x = math.matrix([[0, 0, 1, 1],
-                       [0, 0, 1, 1],
-                       [0, 0, 1, 1],
-                       [0, 0, 1, 1],
-                       [0, 1, 1, 1],
-                       [0, 1, 1, 1],
-                       [0, 1, 1, 1],
-                       [0, 1, 1, 1],
-                       [1, 0, 1, 1],
-                       [1, 0, 1, 1],
-                       [1, 0, 1, 1],
-                       [1, 0, 1, 1],
-                       [1, 1, 1, 1],
-                       [1, 1, 1, 1],
-                       [1, 1, 1, 1],
-                       [1, 1, 1, 1]])
+const x = math.matrix([ [0,0,1],
+                       [0,1,1],
+                       [1,0,1],
+                       [1,1,1] ])
 
 // Output Data
-const y = math.transpose(math.matrix([[0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]]))
+const y = math.transpose(math.matrix([[0, 1, 1, 0]]))
 
 const layer0 = x
 let layer1
@@ -107,6 +95,7 @@ for (let alphaIndex = 0; alphaIndex < 3; alphaIndex++) {
             minError = currentError
             minSynapse1 = synapse1
             minSynapse0 = synapse0
+            console.log(minError)
         }
     }
 }
@@ -119,22 +108,22 @@ let test = math.multiply(x, minSynapse0).map(sigmoid)
 console.log(math.multiply(test, minSynapse1).map(sigmoid))
 
 // Test Cases for function
-let testX = math.matrix([[0, 1, 1, 1]])
+let testX = math.matrix([[0, 1, 1]])
 console.log("Output of [0, 1, 1, 1]")
 let testl1 = math.multiply(testX, minSynapse0).map(sigmoid)
 console.log(math.multiply(testl1, minSynapse1).map(sigmoid))
 
-testX = math.matrix([[0, 0, 1, 1]])
+testX = math.matrix([[0, 0, 1]])
 console.log("Output of [0, 0, 1, 1]")
 testl1 = math.multiply(testX, minSynapse0).map(sigmoid)
 console.log(math.multiply(testl1, minSynapse1).map(sigmoid))
 
-testX = math.matrix([[1, 0, 1, 1]])
+testX = math.matrix([[1, 0, 1]])
 console.log("Output of [1, 0, 1, 1]")
 testl1 = math.multiply(testX, minSynapse0).map(sigmoid)
 console.log(math.multiply(testl1, minSynapse1).map(sigmoid))
 
-testX = math.matrix([[1, 1, 1, 1]])
+testX = math.matrix([[1, 1, 1]])
 console.log("Output of [1, 1, 1, 1]")
 testl1 = math.multiply(testX, minSynapse0).map(sigmoid)
 console.log(math.multiply(testl1, minSynapse1).map(sigmoid))
