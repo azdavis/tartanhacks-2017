@@ -4,7 +4,7 @@
   "description": "do something with machine learning",
   "main": "src/index.js",
   "scripts": {
-    "start": "stylus -c src/views && node src/index.js"
+    "start": "webpack --optimize-minimize && stylus -c src/views && node src/index.js"
   },
   "author": "Ariel Davis <ariel.z.davis@icloud.com>",
   "license": "ISC",
