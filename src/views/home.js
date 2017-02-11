@@ -4,7 +4,6 @@ const form = document.getElementById("form")
 const input = document.getElementById("input")
 
 function one() {
-    title.innerHTML = "machine learning™"
     msg.innerHTML = "what is your question for today?"
     form.onsubmit = e => {
         e.preventDefault()
@@ -14,10 +13,10 @@ function one() {
 }
 
 function two() {
-    title.innerHTML = "what up"
     msg.innerHTML = "hey"
 }
 
+title.innerHTML = "machine learning™"
 input.focus()
 
 one()
