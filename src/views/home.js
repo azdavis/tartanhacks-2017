@@ -9,7 +9,7 @@ const input = document.getElementById("input")
 const onePrep = e => {
     e.preventDefault()
     if (input.value.trim() === "") {
-        msg2.textContent = "that can't be empty."
+        msg2.textContent = "That can't be empty."
         return
     }
     one(input.value)
@@ -17,24 +17,24 @@ const onePrep = e => {
 
 const one = question => {
     input.value = ""
-    msg.textContent = `what are some factors that affect '${question}'?`
-    msg2.textContent = "they should also be yes/no, and separated with commas."
+    msg.textContent = `What are some factors that affect '${question}'?`
+    msg2.textContent = "They should also be yes/no, and separated with commas."
     form.onsubmit = twoPrep(question)
 }
 
 const twoPrep = question => e => {
     e.preventDefault()
     if (input.value.trim() === "") {
-        msg2.textContent = "that can't be empty."
+        msg2.textContent = "That can't be empty."
         return
     }
     const factors = input.value.split(",").map(x => x.trim())
     if (factors.find(x => x === "") !== undefined) {
-        msg2.textContent = "you can't have an empty factor."
+        msg2.textContent = "You can't have an empty factor."
         return
     }
     if (factors.length > 7) {
-        msg2.textContent = "you can't have more than 7 factors."
+        msg2.textContent = "You can't have more than 7 factors."
         return
     }
     two(question, factors)
@@ -53,11 +53,11 @@ const addRow = n => isCalculated => () => {
             continue
         }
         el.className = "green"
-        el.textContent = "y"
+        el.textContent = "Y"
         el.onclick = () => {
             const ig = isGreen(el)
             el.className = ig ? "red" : "green"
-            el.textContent = ig ? "n" : "y"
+            el.textContent = ig ? "N" : "Y"
         }
     }
     form.insertBefore(row, form.lastChild)
@@ -66,8 +66,8 @@ const addRow = n => isCalculated => () => {
 
 const two = (question, factors) => {
     input.remove()
-    msg.textContent = "enter some data."
-    msg2.textContent = "click to add rows and switch between yes/no."
+    msg.textContent = "Enter some data."
+    msg2.textContent = "Click to add rows and switch between yes/no."
 
     const header = document.createElement("div")
     let el
@@ -89,13 +89,13 @@ const two = (question, factors) => {
     const footer = document.createElement("div")
 
     const addRowBtn = document.createElement("span")
-    addRowBtn.textContent = "add datapoint"
+    addRowBtn.textContent = "Add datapoint"
     addRowBtn.className = "gray"
     const thisAddRow = addRow(factors.length + 1)
     addRowBtn.onclick = thisAddRow(false)
 
     const trainBtn = document.createElement("span")
-    trainBtn.textContent = "train"
+    trainBtn.textContent = "Train"
     trainBtn.className = "yellow"
     trainBtn.onclick = threePrep(thisAddRow, addRowBtn, trainBtn)
 
@@ -136,10 +136,10 @@ const threePrep = (thisAddRow, addRowBtn, trainBtn) => e => {
 }
 
 const three = (train, thisAddRow, addRowBtn, calcBtn) => {
-    msg.textContent = "now add some data for which you don't know the answer."
-    msg2.textContent = "use the calculate button to make an educated guess."
+    msg.textContent = "Now add some data for which you don't know the answer."
+    msg2.textContent = "Use the calculate button to make an educated guess."
     const pending = []
-    calcBtn.textContent = "calculate"
+    calcBtn.textContent = "Calculate"
     calcBtn.onclick = () => {
         while (pending.length !== 0) {
             const p = pending.pop()
@@ -173,8 +173,8 @@ const three = (train, thisAddRow, addRowBtn, calcBtn) => {
 }
 
 title.textContent = "Stairwell"
-msg.textContent = "what is your question for today?"
-msg2.textContent = "it should be a yes/no question."
+msg.textContent = "What is your question for today?"
+msg2.textContent = "It should be a yes/no question."
 input.focus()
 form.onsubmit = onePrep
 form.style.display = "block"
