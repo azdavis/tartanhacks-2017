@@ -44,13 +44,6 @@ const twoPrep = question => e => {
 
 const two = (question, factors) => {
     input.remove()
-    const header = row(factors.length + 1)
-    let i
-    for (i = 0; i < factors.length; i++) {
-        header.children[i].textContent = factors[i]
-    }
-    header.children[i].textContent = question
-    form.appendChild(header)
 }
 
 title.textContent = "machine learning™"

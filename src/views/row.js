@@ -1,10 +1,9 @@
 "use strict"
 
-function row(n) {
+function row(f, xs) {
     const row = document.createElement("div")
-    for (let i = 0; i < n; i++) {
-        const elem = document.createElement("span")
-        row.appendChild(elem)
+    for (const x of xs) {
+        row.appendChild(f(x))
     }
     return row
 }
