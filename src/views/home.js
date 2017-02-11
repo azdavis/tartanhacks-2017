@@ -15,12 +15,12 @@ const one = e => {
 const two = e => {
     e.preventDefault()
     const factors = input.value.split(",").map(x => x.trim())
-    if (factors.length > 10) {
-        msg2.innerHTML = "that's too many factors."
-        return
-    }
     if (factors.find(x => x === "") !== undefined) {
         msg2.innerHTML = "you can't have an empty factor."
+        return
+    }
+    if (factors.length > 10) {
+        msg2.innerHTML = "that's too many factors."
         return
     }
     form.remove()
