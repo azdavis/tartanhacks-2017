@@ -15,7 +15,7 @@ function deriv(val) {
 // both arrays must be of the same length
 function multiplyElements(arr1, arr2) {
     arr1.forEach(function(index) {
-        arr1[index] = arr1[index] * arr2[index];
+        arr1[index] = arr1[index] * arr2[index]
     })
     return arr1
 }

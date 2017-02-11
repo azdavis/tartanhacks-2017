@@ -15,7 +15,7 @@ function deriv(y) {
 // both arrays must be of the same length
 function multiplyElements(arr1, arr2) {
     arr1.forEach(function(index) {
-        arr1[index] = arr1[index] * arr2[index];
+        arr1[index] = arr1[index] * arr2[index]
     })
     return arr1
 }
@@ -71,9 +71,9 @@ let minSynapse1
 
 const hlSizes = [(x.size())[1], (x.size())[1] - 1, (x.size())[1] + 1]
 const alphas = [0.1, 1, 10]
-const dropout_percent = 0.2;
+const dropout_percent = 0.2
 
-let count = 1;
+let count = 1
 
 for (let alphaIndex = 0; alphaIndex < 3; alphaIndex++) {
 
