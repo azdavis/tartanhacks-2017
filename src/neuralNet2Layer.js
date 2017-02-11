@@ -100,7 +100,7 @@ for (let alphaIndex = 0; alphaIndex < 3; alphaIndex++) {
                 if (i == 0) {
                     console.log(count)
                     count++
-                } 
+                }
                 console.log(i)
             }
         }

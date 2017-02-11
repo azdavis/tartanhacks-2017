@@ -34,7 +34,7 @@ function getAveError(m1) {
 // TODO: make a function that sets x and y
 
 // Input Data
-def train(inputData, inputResults) {
+function train(inputData, inputResults) {
     const x = math.matrix(inputData)
     const y = math.matrix(inputResults)
 
@@ -53,8 +53,10 @@ def train(inputData, inputResults) {
     let minSynapse0
     let minSynapse1
 
+    // Gradient descent and dropout optimization variables
     const hlSizes = [(x.size())[1], (x.size())[1] - 1, (x.size())[1] + 1]
     const alphas = [0.1, 1, 10]
+    const dropout_percent = 0.2;
 
     for (let alphaIndex = 0; alphaIndex < 3; alphaIndex++) {
 
@@ -66,9 +68,16 @@ def train(inputData, inputResults) {
             synapse0 = math.random([3, hiddenLayerSize], -1, 1)
             synapse1 = math.random([hiddenLayerSize, 1], -1, 1)
 
-            for (let i = 0; i < 60000; i++) {
+            for (let i = 0; i < 40000; i++) {
                 // forward propagation
                 layer1 = math.multiply(layer0, synapse0).map(sigmoid)
+                // dropout
+                layer1.forEach(function(index) {
+                let rand = math.random()
+                if(rand < dropout_percent)
+                    layer1[index] = 0
+                layer1[index] *= 1.0/(1-dropout_percent)
+                })
                 layer2 = math.multiply(layer1, synapse1).map(sigmoid)
                 // compare estimate with actual output
                 layer2_error = math.subtract(y, layer2)
@@ -93,25 +102,32 @@ def train(inputData, inputResults) {
     }
     return {
         synapse0: minSynapse0,
-        synapse1: minsynapse1
+        synapse1: minSynapse1
     }
 }
-console.log("Output of training data after training")
-let test = math.multiply(x, minSynapse0).map(sigmoid)
-console.log(math.multiply(test, minSynapse1).map(sigmoid))
 
-// Test Cases for function
-let testX = math.matrix([[0, 1, 0]])
-console.log("Output of [0,1,0]")
-let testl1 = math.multiply(testX, minSynapse0).map(sigmoid)
-console.log(math.multiply(testl1, minSynapse1).map(sigmoid))
+// Test Train
+// console.log(train([[0, 0, 1],
+//                      [0, 1, 1],
+//                      [1, 0, 1],
+//                      [1, 1, 1]], [[0], [0], [1], [1]]))
 
-testX = math.matrix([[1, 1, 0]])
-console.log("Output of [1,1,0]")
-testl1 = math.multiply(testX, minSynapse0).map(sigmoid)
-console.log(math.multiply(testl1, minSynapse1).map(sigmoid))
+// console.log("Output of training data after training")
+// let test = math.multiply(x, minSynapse0).map(sigmoid)
+// console.log(math.multiply(test, minSynapse1).map(sigmoid))
 
-console.log("Final Synapse0")
-console.log(minSynapse0)
-console.log("Final Synapse1")
-console.log(minSynapse1)
+// // Test Cases for function
+// let testX = math.matrix([[0, 1, 0]])
+// console.log("Output of [0,1,0]")
+// let testl1 = math.multiply(testX, minSynapse0).map(sigmoid)
+// console.log(math.multiply(testl1, minSynapse1).map(sigmoid))
+
+// testX = math.matrix([[1, 1, 0]])
+// console.log("Output of [1,1,0]")
+// testl1 = math.multiply(testX, minSynapse0).map(sigmoid)
+// console.log(math.multiply(testl1, minSynapse1).map(sigmoid))
+
+// console.log("Final Synapse0")
+// console.log(minSynapse0)
+// console.log("Final Synapse1")
+// console.log(minSynapse1)
