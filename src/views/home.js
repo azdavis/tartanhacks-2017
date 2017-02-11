@@ -21,7 +21,7 @@ function row(n) {
 const one = e => {
     e.preventDefault()
     if (input.value.trim() === "") {
-        msg2.textContent = "please enter something."
+        msg2.textContent = "that can't be empty."
         return
     }
     question = input.value
@@ -34,7 +34,7 @@ const one = e => {
 const two = e => {
     e.preventDefault()
     if (input.value.trim() === "") {
-        msg2.textContent = "please enter something."
+        msg2.textContent = "that can't be empty."
         return
     }
     factors = input.value.split(",").map(x => x.trim())
