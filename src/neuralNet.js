@@ -65,7 +65,7 @@ function train(inputData, inputResults) {
 
             // Weights
             hiddenLayerSize = hlSizes[hlSizeIndex]
-            synapse0 = math.random([3, hiddenLayerSize], -1, 1)
+            synapse0 = math.random([(x.size())[1], hiddenLayerSize], -1, 1)
             synapse1 = math.random([hiddenLayerSize, 1], -1, 1)
 
             for (let i = 0; i < 40000; i++) {
@@ -115,8 +115,8 @@ function get(input, w0, w1) {
 }
 
 // Test Train
-// let results = (train([[0, 0, 1],
-//                  [0, 1, 1],
-//                  [1, 0, 1],
-//                  [1, 1, 1]], [0, 0, 1, 1]))
-// console.log(get([[0, 1, 0]], results.synapse0, results.synapse1))
+let results = (train([[0, 0, 1],
+                 [0, 1, 1],
+                 [1, 0, 1],
+                 [1, 1, 1]], [0, 0, 1, 1]))
+console.log(get([[0, 1, 0]], results.synapse0, results.synapse1))
