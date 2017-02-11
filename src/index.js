@@ -28,4 +28,4 @@ app.use((req, res) => {
     res.status(404).render("error", {message: "HTTP 404 Not Found"})
 })
 
-app.listen(3000)
+app.listen(process.env.PORT || 3000)
