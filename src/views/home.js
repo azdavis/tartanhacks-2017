@@ -40,6 +40,7 @@ const twoPrep = question => e => {
     two(question, factors)
 }
 
+const isGreen = x => x.className === "green"
 const newRow = n => {
     const row = document.createElement("div")
     for (let i = 0; i < n; i++) {
@@ -47,13 +48,9 @@ const newRow = n => {
         el.className = "green"
         el.textContent = "y"
         el.onclick = () => {
-            if (el.className === "green") {
-                el.className = "red"
-                el.textContent = "n"
-            } else {
-                el.className = "green"
-                el.textContent = "y"
-            }
+            const ig = isGreen(el)
+            el.className = ig ? "red" : "green"
+            el.textContent = ig ? "n" : "y"
         }
         row.appendChild(el)
     }
