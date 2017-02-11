@@ -19,13 +19,18 @@ function getAveError(m1) {
 // TODO: make a function that sets x and y
 
 // Input Data
-const x = math.matrix([ [0,0,1],
-                       [0,1,1],
-                       [1,0,1],
-                       [1,1,1] ])
+const x = math.matrix([ [0,0,1,1],
+                        [0,1,1,1],
+                        [1,0,1,1],
+                        [1,1,1,1],
+                        [0,0,1,1],
+                        [0,1,1,1],
+                        [1,0,1,1],
+                        [1,1,1,1]
+])
 
 // Output Data
-const y = math.transpose(math.matrix([[0, 1, 1, 0]]))
+const y = math.transpose(math.matrix([[0, 1, 1, 0, 0, 1, 1, 0]]))
 
 const layer0 = x
 let layer1
@@ -42,16 +47,18 @@ let synapse1
 let minSynapse0
 let minSynapse1
 
-const hlSizes = [(x.size())[1], (x.size())[1] - 1, (x.size())[1] + 1]
-const alphas = [0.1, 1, 10]
+// const hlSizes = [(x.size())[1], (x.size())[1] - 1, (x.size())[1] + 1]
+// const alphas = [0.1, 1, 10]
+const hlSizes = [4]
+const alphas = [1]
 const dropout_percent = 0.2
 
 let count = 1
 
-for (let alphaIndex = 0; alphaIndex < 3; alphaIndex++) {
+for (let alphaIndex = 0; alphaIndex < 1; alphaIndex++) {
 
     // Iterate over 3 hidden layer sizes to get the best one
-    for (let hlSizeIndex = 0; hlSizeIndex < 3; hlSizeIndex++) {
+    for (let hlSizeIndex = 0; hlSizeIndex < 1; hlSizeIndex++) {
 
         // Weights
         hiddenLayerSize = hlSizes[hlSizeIndex]
@@ -108,27 +115,27 @@ let test = math.multiply(x, minSynapse0).map(sigmoid)
 console.log(math.multiply(test, minSynapse1).map(sigmoid))
 
 // Test Cases for function
-let testX = math.matrix([[0, 1, 1]])
+let testX = math.matrix([[0, 1, 1, 1]])
 console.log("Output of [0, 1, 1, 1]")
 let testl1 = math.multiply(testX, minSynapse0).map(sigmoid)
 console.log(math.multiply(testl1, minSynapse1).map(sigmoid))
 
-testX = math.matrix([[0, 0, 1]])
+testX = math.matrix([[0, 0, 1, 1]])
 console.log("Output of [0, 0, 1, 1]")
 testl1 = math.multiply(testX, minSynapse0).map(sigmoid)
 console.log(math.multiply(testl1, minSynapse1).map(sigmoid))
 
-testX = math.matrix([[1, 0, 1]])
+testX = math.matrix([[1, 0, 1, 1]])
 console.log("Output of [1, 0, 1, 1]")
 testl1 = math.multiply(testX, minSynapse0).map(sigmoid)
 console.log(math.multiply(testl1, minSynapse1).map(sigmoid))
 
-testX = math.matrix([[1, 1, 1]])
+testX = math.matrix([[1, 1, 1, 1]])
 console.log("Output of [1, 1, 1, 1]")
 testl1 = math.multiply(testX, minSynapse0).map(sigmoid)
 console.log(math.multiply(testl1, minSynapse1).map(sigmoid))
 
-console.log("Final Synapse0")
-console.log(minSynapse0)
-console.log("Final Synapse1")
-console.log(minSynapse1)
+// console.log("Final Synapse0")
+// console.log(minSynapse0)
+// console.log("Final Synapse1")
+// console.log(minSynapse1)
