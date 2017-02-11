@@ -134,9 +134,37 @@ const threePrep = (thisAddRow, addRowBtn, submitBtn) => e => {
     }).then(x => x.json()), thisAddRow, addRowBtn, submitBtn)
 }
 
-const three = (trained, thisAddRow, addRowBtn, submitBtn) => {
+const three = (train, thisAddRow, addRowBtn, submitBtn) => {
+    const pending = []
     submitBtn.textContent = "calculate"
-    addRowBtn.onclick = thisAddRow(true)
+    submitBtn.onclick = () => train.then(({s0, s1}) => {
+        for (const p of pending) {
+            p.className = "grayed"
+            const data = []
+            const elems = p.children
+            const max = elems.length - 1
+            for (let j = 0; j < max; j++) {
+                elems[j].onclick = null
+                data.push(toData(elems[j]))
+            }
+            fetch("/get", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({d: data, s0, s1})
+            })
+            .then(x => x.json())
+            .then(({r}) => {
+                p.lastChild.textContent = r
+            })
+        }
+        while (pending.length !== 0) {
+            pending.pop()
+        }
+    })
+    thisAddRow = thisAddRow(true)
+    addRowBtn.onclick = () => {
+        pending.push(thisAddRow())
+    }
 }
 
 title.textContent = "machine learning™"
