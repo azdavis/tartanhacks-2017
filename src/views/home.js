@@ -6,7 +6,7 @@ const msg2 = document.getElementById("msg2")
 const form = document.getElementById("form")
 const input = document.getElementById("input")
 
-const onePrep = () => e => {
+const onePrep = e => {
     e.preventDefault()
     if (input.value.trim() === "") {
         msg2.textContent = "that can't be empty."
@@ -109,5 +109,5 @@ title.textContent = "machine learning™"
 msg.textContent = "what is your question for today?"
 msg2.textContent = "it should be a yes/no question."
 input.focus()
-form.onsubmit = onePrep()
+form.onsubmit = onePrep
 form.style.display = "block"
