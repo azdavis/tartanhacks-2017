@@ -2,6 +2,7 @@
 
 const express = require("express")
 const bodyParser = require("body-parser")
+const neuralNet = require("./neuralNet")
 
 const app = express()
 app.set("view engine", "pug")
@@ -13,9 +14,8 @@ app.get("/", (req, res) => {
 })
 
 app.post("/train", (req, res) => {
-    const {data, answers} = req.body
-    answers[0]++
-    res.send({data, answers})
+    const {data, results} = req.body
+    res.send(neuralNet.train(data, results))
 })
 
 app.use((req, res) => {
