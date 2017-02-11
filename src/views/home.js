@@ -65,12 +65,17 @@ const two = (question, factors) => {
     msg.textContent = "enter some data."
     msg2.textContent = "click to add rows and switch between yes/no."
     const header = document.createElement("div")
-    for (const x of [...factors, question]) {
-        const el = document.createElement("span")
+    let el
+    for (const x of factors) {
+        el = document.createElement("span")
         el.textContent = x
         el.className = "b"
         header.appendChild(el)
     }
+    el = document.createElement("span")
+    el.textContent = question
+    el.className = "y"
+    header.appendChild(el)
     form.appendChild(header)
     const addRowBtn = document.createElement("div")
     addRowBtn.className = "gray"
