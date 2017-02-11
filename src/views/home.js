@@ -24,8 +24,8 @@ const one = e => {
         msg2.textContent = "please enter something."
         return
     }
-    msg.textContent = "what are some factors that affect that question?"
-    msg2.textContent = "separate them with commas (',')."
+    msg.textContent = `what are some factors that affect '${question}'?`
+    msg2.textContent = "they should also be yes/no, and separated with commas."
     question = input.value
     input.value = ""
     form.onsubmit = two
