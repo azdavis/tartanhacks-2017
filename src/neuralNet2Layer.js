@@ -55,6 +55,8 @@ let error
 let minError = 100
 let synapse0
 let synapse1
+let minSynapse0
+let minSynapse1
 
 const hlSizes = [(x.size())[1], (x.size())[1] - 1, (x.size())[1] + 1]
 
@@ -82,18 +84,24 @@ for (let hlSizeIndex = 0; hlSizeIndex < 3; hlSizeIndex++) {
         synapse0 = math.add(synapse0, math.multiply(math.transpose(layer0), layer1_delta))
         synapse1 = math.add(synapse1, math.multiply(math.transpose(layer1), layer2_delta))
     }
-    console.log(getAveError(layer2_error))
+    let currentError = getAveError(layer2_error)
+    if (currentError < minError) {
+        minError = currentError
+        minSynapse1 = synapse1
+        minSynapse0 = synapse0
+    }
 }
 console.log("Output of training data after training")
-console.log(layer2)
+let test = math.multiply(x, minSynapse0).map(sigmoid)
+console.log(math.multiply(test, minSynapse1).map(sigmoid))
 
 // Test Cases for function
 let testX = math.matrix([[0, 1, 0]])
 console.log("Output of [0,1,0]")
-let testl1 = math.multiply(testX, synapse0).map(sigmoid)
-console.log(math.multiply(testl1, synapse1).map(sigmoid))
+let testl1 = math.multiply(testX, minSynapse0).map(sigmoid)
+console.log(math.multiply(testl1, minSynapse1).map(sigmoid))
 
 testX = math.matrix([[1, 1, 0]])
 console.log("Output of [1,1,0]")
-testl1 = math.multiply(testX, synapse0).map(sigmoid)
-console.log(math.multiply(testl1, synapse1).map(sigmoid))
+testl1 = math.multiply(testX, minSynapse0).map(sigmoid)
+console.log(math.multiply(testl1, minSynapse1).map(sigmoid))
