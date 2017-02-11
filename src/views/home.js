@@ -42,6 +42,7 @@ const twoPrep = question => e => {
 
 const isGreen = x => x.className === "green"
 const addRow = n => isCalculated => () => {
+    window.scrollTo(0, document.body.scrollHeight)
     const row = document.createElement("div")
     for (let i = 0; i < n; i++) {
         const el = document.createElement("span")
