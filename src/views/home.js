@@ -163,7 +163,7 @@ const three = (train, thisAddRow, addRowBtn, calcBtn) => {
                     p.lastChild.className = r > 0.5 ? "green" : "red"
                     p.lastChild.textContent = r.toFixed(4)
                 })
-            })
+            }).catch(x => alert(`Error: ${x}`))
         }
     }
     thisAddRow = thisAddRow(true)
