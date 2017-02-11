@@ -106,12 +106,6 @@ function train(inputData, inputResults) {
     }
 }
 
-// Test Train
-let results = (train([[0, 0, 1],
-                 [0, 1, 1],
-                 [1, 0, 1],
-                 [1, 1, 1]], [0, 0, 1, 1]))
-
 function get(input, w0, w1) {
     let synapse0 = math.matrix(w0)
     let synapse1 = math.matrix(w1)
@@ -120,24 +114,9 @@ function get(input, w0, w1) {
     return math.multiply(testl1, synapse1).map(sigmoid)
 }
 
-
-console.log(get([[0, 1, 0]], results.synapse0, results.synapse1))
-// console.log("Output of training data after training")
-// let test = math.multiply(x, minSynapse0).map(sigmoid)
-// console.log(math.multiply(test, minSynapse1).map(sigmoid))
-
-// // Test Cases for function
-// let testX = math.matrix([[0, 1, 0]])
-// console.log("Output of [0,1,0]")
-// let testl1 = math.multiply(testX, minSynapse0).map(sigmoid)
-// console.log(math.multiply(testl1, minSynapse1).map(sigmoid))
-
-// testX = math.matrix([[1, 1, 0]])
-// console.log("Output of [1,1,0]")
-// testl1 = math.multiply(testX, minSynapse0).map(sigmoid)
-// console.log(math.multiply(testl1, minSynapse1).map(sigmoid))
-
-// console.log("Final Synapse0")
-// console.log(minSynapse0)
-// console.log("Final Synapse1")
-// console.log(minSynapse1)
+// Test Train
+// let results = (train([[0, 0, 1],
+//                  [0, 1, 1],
+//                  [1, 0, 1],
+//                  [1, 1, 1]], [0, 0, 1, 1]))
+// console.log(get([[0, 1, 0]], results.synapse0, results.synapse1))
