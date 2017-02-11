@@ -120,3 +120,5 @@ function get(input, w0, w1) {
 //                  [1, 0, 1],
 //                  [1, 1, 1]], [0, 0, 1, 1]))
 // console.log(get([[0, 1, 0]], results.synapse0, results.synapse1))
+
+module.exports = {train, get}
