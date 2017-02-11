@@ -27,8 +27,8 @@ const x = math.matrix([[0, 0, 1],
 const y = math.transpose(math.matrix([[0, 0, 1, 1]]))
 
 // Weights
-let syn0 = math.random([3,1], -1, 1)
-let syn1 = math.random([3,1], -1, 1)
+let syn0 = math.random([3,4], -1, 1)
+let syn1 = math.random([4,1], -1, 1)
 
 const l0 = x
 let l1
@@ -47,11 +47,11 @@ for (let i = 0; i < 60000; i++) {
     l2_error = math.subtract(y, l2)
     // multiply how much we missed by the
     // slope of the sigmoid at the values in l1
-    l2_delta = math.multiply(l2_error, deriv(l2)) // multiply every element
+    l2_delta = multiplyElements(l2_error, l2.map(deriv))
 
     l1_error = math.multiply(l2_delta, math.transpose(syn1))
 
-    l1_delta = math.multiply(l1_error, l1.map(deriv)) // multiply every element
+    l1_delta = multiplyElements(l1_error, l1.map(deriv))
     // update weights
     let t0 = math.transpose(l0)
     let m0 = math.multiply(t0, l1_delta)
@@ -59,7 +59,7 @@ for (let i = 0; i < 60000; i++) {
 
     let t1 = math.transpose(l1)
     let m1 = math.multiply(t1, l2_delta)
-    syn1 = math.add(syn1, m)
+    syn1 = math.add(syn1, m1)
 }
 
 console.log(l2)
