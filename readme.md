@@ -1,3 +1,5 @@
-# tartanhacks-2017
+# Stairwell
 
-do something with machine learning
+Machine learning at your fingertips.
+
+TartanHacks 2017
