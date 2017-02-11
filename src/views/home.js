@@ -159,6 +159,7 @@ const three = (train, thisAddRow, addRowBtn, calcBtn) => {
                 })
                 .then(x => x.json())
                 .then(({r}) => {
+                    p.lastChild.className = r > 0.5 ? "green" : "red"
                     p.lastChild.textContent = r.toFixed(4)
                 })
             })
