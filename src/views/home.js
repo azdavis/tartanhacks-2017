@@ -88,13 +88,13 @@ const two = (question, factors) => {
     const footer = document.createElement("div")
 
     const addRowBtn = document.createElement("span")
-    addRowBtn.innerHTML = "add datapoint"
+    addRowBtn.textContent = "add datapoint"
     addRowBtn.className = "gray"
     const thisAddRow = addRow(factors.length + 1)
     addRowBtn.onclick = thisAddRow(false)
 
     const trainBtn = document.createElement("span")
-    trainBtn.innerHTML = "train"
+    trainBtn.textContent = "train"
     trainBtn.className = "yellow"
     trainBtn.onclick = threePrep(thisAddRow, addRowBtn, trainBtn)
 
