@@ -59,6 +59,7 @@ let minSynapse1
 
 const hlSizes = [(x.size())[1], (x.size())[1] - 1, (x.size())[1] + 1]
 const alphas = [0.1, 1, 10]
+const dropout_percent = 0.2;
 
 for (let alphaIndex = 0; alphaIndex < 3; alphaIndex++) {
 
@@ -73,6 +74,8 @@ for (let alphaIndex = 0; alphaIndex < 3; alphaIndex++) {
         for (let i = 0; i < 60000; i++) {
             // forward propagation
             layer1 = math.multiply(layer0, synapse0).map(sigmoid)
+            // dropout
+            layer1 *= math.random([x.size()[0], hiddenLayerSize]) * 1.0/(1-dropout_percent)
             layer2 = math.multiply(layer1, synapse1).map(sigmoid)
             // compare estimate with actual output
             layer2_error = math.subtract(y, layer2)
