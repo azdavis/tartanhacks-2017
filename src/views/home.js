@@ -33,6 +33,10 @@ const twoPrep = question => e => {
         msg2.textContent = "You can't have an empty factor."
         return
     }
+    if (factors.length < 2) {
+        msg2.textContent = "You can't less than 2 factors."
+        return
+    }
     if (factors.length > 7) {
         msg2.textContent = "You can't have more than 7 factors."
         return
