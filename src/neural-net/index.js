@@ -100,11 +100,4 @@ function get(input, w0, w1) {
     return math.multiply(testl1, synapse1).map(sigmoid)
 }
 
-// // Test Train
-// let results = (train([[0, 0, 1],
-//                  [0, 1, 1],
-//                  [1, 0, 1],
-//                  [1, 1, 1]], [0, 0, 1, 1]))
-// console.log(get([[0, 1, 0]], results.synapse0, results.synapse1))
-
 module.exports = {train, get}
