@@ -1,7 +1,5 @@
 "use strict"
 
-const row = require("./row")
-
 const title = document.getElementById("title")
 const msg = document.getElementById("msg")
 const msg2 = document.getElementById("msg2")
