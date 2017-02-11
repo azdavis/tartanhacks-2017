@@ -1,24 +1,9 @@
 "use strict"
 
 const math = require("mathjs")
-
-// Math functions for nonlinearity
-function sigmoid(value) {
-    return 1/(1+math.pow(math.e, -value))
-}
-
-// derivative of sigmoid
-function deriv(y) {
-    return y * (1-y)
-}
-
-// both arrays must be of the same length
-function multiplyElements(arr1, arr2) {
-    arr1.forEach(function(index) {
-        arr1[index] = arr1[index] * arr2[index]
-    })
-    return arr1
-}
+const sigmoid = require("./sigmoid")
+const deriv = require("./deriv")
+const multiplyElements = require("./multiplyElements")
 
 // must be vertical matrix
 function getAveError(m1) {

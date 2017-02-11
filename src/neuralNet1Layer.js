@@ -1,24 +1,9 @@
 "use strict"
 
 const math = require("mathjs")
-
-// Math functions for nonlinearity
-function sigmoid(val) {
-    return 1/(1+math.pow(math.e, -val))
-}
-
-// derivative of sigmoid
-function deriv(val) {
-    return val * (1-val)
-}
-
-// both arrays must be of the same length
-function multiplyElements(arr1, arr2) {
-    arr1.forEach(function(index) {
-        arr1[index] = arr1[index] * arr2[index]
-    })
-    return arr1
-}
+const sigmoid = require("./sigmoid")
+const deriv = require("./deriv")
+const multiplyElements = require("./multiplyElements")
 
 // TODO: make a function that sets x and y
 
