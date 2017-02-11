@@ -30,5 +30,5 @@ title.innerHTML = "machine learning™"
 msg.innerHTML = "what is your question for today?"
 msg2.innerHTML = "it should be a yes/no question."
 input.focus()
-form.style.display = "block"
 form.onsubmit = one
+form.style.display = "block"
