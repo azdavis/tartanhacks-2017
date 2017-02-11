@@ -135,6 +135,8 @@ const threePrep = (thisAddRow, addRowBtn, trainBtn) => e => {
 }
 
 const three = (train, thisAddRow, addRowBtn, calcBtn) => {
+    msg.textContent = "now add some data for which you don't know the answer."
+    msg2.textContent = "use the calculate button to make an educated guess."
     const pending = []
     calcBtn.textContent = "calculate"
     calcBtn.onclick = () => train.then(({s0, s1}) => {
@@ -147,6 +149,7 @@ const three = (train, thisAddRow, addRowBtn, calcBtn) => {
                 elems[j].onclick = null
                 data.push(toData(elems[j]))
             }
+            p.lastChild.textContent = "..."
             fetch("/get", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
