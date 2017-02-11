@@ -1,6 +1,6 @@
 const path = require("path")
 
-module.exports = {
+const options = {
     entry: "./src/views/home.js",
     output: {
         path: __dirname,
@@ -16,3 +16,5 @@ module.exports = {
         ]
     }
 }
+
+module.exports = options
