@@ -174,7 +174,7 @@ testX = math.matrix([[1, 1, 1, 1]])
 console.log("Output of [1, 1, 1, 1]")
 testl1 = math.multiply(testX, minSynapse0).map(sigmoid)
 testl2 = math.multiply(testl1, minSynapse1).map(sigmoid)
-console.log(math.multiply(testl1, minSynapse2).map(sigmoid))
+console.log(math.multiply(testl2, minSynapse2).map(sigmoid))
 
 console.log("Final Synapse0")
 console.log(minSynapse0)
