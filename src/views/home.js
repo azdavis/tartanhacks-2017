@@ -40,8 +40,43 @@ const twoPrep = question => e => {
     two(question, factors)
 }
 
+const newRow = n => {
+    const row = document.createElement("div")
+    for (let i = 0; i < n; i++) {
+        const el = document.createElement("span")
+        el.className = "g"
+        el.textContent = "yes"
+        el.onclick = () => {
+            if (el.className === "g") {
+                el.className = "r"
+                el.textContent = "no"
+            } else {
+                el.className = "g"
+                el.textContent = "yes"
+            }
+        }
+        row.appendChild(el)
+    }
+    return row
+}
+
 const two = (question, factors) => {
     input.remove()
+    const header = document.createElement("div")
+    for (const x of [...factors, question]) {
+        const el = document.createElement("span")
+        el.textContent = x
+        el.className = "b"
+        header.appendChild(el)
+    }
+    form.appendChild(header)
+    const addRowBtn = document.createElement("div")
+    addRowBtn.className = "gray"
+    addRowBtn.textContent = "add row"
+    addRowBtn.onclick = () => {
+        form.insertBefore(newRow(factors.length + 1), addRowBtn)
+    }
+    form.appendChild(addRowBtn)
 }
 
 title.textContent = "machine learning™"
