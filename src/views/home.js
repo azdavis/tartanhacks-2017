@@ -6,17 +6,21 @@ const msg2 = document.getElementById("msg2")
 const form = document.getElementById("form")
 const input = document.getElementById("input")
 
+let question = ""
+let factors = []
+
 const one = e => {
     e.preventDefault()
     msg.textContent = "what are some factors that affect that question?"
     msg2.textContent = "separate them with commas (',')."
+    question = input.value
     input.value = ""
     form.onsubmit = two
 }
 
 const two = e => {
     e.preventDefault()
-    const factors = input.value.split(",").map(x => x.trim())
+    factors = input.value.split(",").map(x => x.trim())
     if (factors.find(x => x === "") !== undefined) {
         msg2.textContent = "you can't have an empty factor."
         return
