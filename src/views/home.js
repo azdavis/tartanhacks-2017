@@ -120,8 +120,10 @@ const threePrep = (thisAddRow, addRowBtn, submitBtn) => e => {
         const rMax = elems.length - 1
         const ary = []
         for (let j = 0; j < rMax; j++) {
+            elems[j].onclick = null
             ary.push(toData(elems[j]))
         }
+        elems[rMax].onclick = null
         data.push(ary)
         results.push(toData(elems[rMax]))
     }
