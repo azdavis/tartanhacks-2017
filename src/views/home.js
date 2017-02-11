@@ -139,8 +139,9 @@ const three = (train, thisAddRow, addRowBtn, calcBtn) => {
     msg2.textContent = "use the calculate button to make an educated guess."
     const pending = []
     calcBtn.textContent = "calculate"
-    calcBtn.onclick = () => train.then(({s0, s1}) => {
-        for (const p of pending) {
+    calcBtn.onclick = () => {
+        while (pending.length !== 0) {
+            const p = pending.pop()
             p.className = "grayed"
             const data = []
             const elems = p.children
@@ -150,20 +151,19 @@ const three = (train, thisAddRow, addRowBtn, calcBtn) => {
                 data.push(toData(elems[j]))
             }
             p.lastChild.textContent = "..."
-            fetch("/get", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({d: data, s0, s1})
-            })
-            .then(x => x.json())
-            .then(({r}) => {
-                p.lastChild.textContent = r
+            train.then(({s0, s1}) => {
+                fetch("/get", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({d: data, s0, s1})
+                })
+                .then(x => x.json())
+                .then(({r}) => {
+                    p.lastChild.textContent = r.toFixed(4)
+                })
             })
         }
-        while (pending.length !== 0) {
-            pending.pop()
-        }
-    })
+    }
     thisAddRow = thisAddRow(true)
     addRowBtn.onclick = () => {
         pending.push(thisAddRow())
