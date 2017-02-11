@@ -61,8 +61,8 @@ function train(inputData, inputResults) {
                     let rand = math.random()
                     if (rand < dropout_percent) {
                         layer1[index] = 0
-                        layer1[index] *= 1.0/(1-dropout_percent)
                     }
+                    layer1[index] *= 1.0/(1-dropout_percent)
                 })
                 layer2 = math.multiply(layer1, synapse1).map(sigmoid)
                 // compare estimate with actual output
