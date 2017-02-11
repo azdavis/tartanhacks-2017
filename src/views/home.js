@@ -45,10 +45,11 @@ const addRow = n => isCalculated => () => {
     const row = document.createElement("div")
     for (let i = 0; i < n; i++) {
         const el = document.createElement("span")
+        row.appendChild(el)
         if (isCalculated && i === n - 1) {
             el.className = "gray"
             el.textContent = "?"
-            return
+            continue
         }
         el.className = "green"
         el.textContent = "y"
@@ -57,9 +58,9 @@ const addRow = n => isCalculated => () => {
             el.className = ig ? "red" : "green"
             el.textContent = ig ? "n" : "y"
         }
-        row.appendChild(el)
     }
     form.insertBefore(row, form.lastChild)
+    return row
 }
 
 const two = (question, factors) => {
