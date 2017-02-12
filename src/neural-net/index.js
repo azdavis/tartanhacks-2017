@@ -39,14 +39,17 @@ function train(inputData, inputResults) {
     let minSynapse1
 
     // Gradient descent and dropout optimization variables
-    const hlSizes = [(x.size())[1], (x.size())[1] - 1, (x.size())[1] + 1]
-    const alphas = [0.1, 1, 10]
+    // const hlSizes = [(x.size())[1], (x.size())[1] - 1, (x.size())[1] + 1]
+    // const alphas = [0.1, 1, 10]
+    const hlSizes = [(x.size())[1] - 1]
+    const alphas = [1]
+
     const dropout_percent = 0.2
 
-    for (let alphaIndex = 0; alphaIndex < 3; alphaIndex++) {
+    for (let alphaIndex = 0; alphaIndex < 1; alphaIndex++) {
 
         // Iterate over 3 hidden layer sizes to get the best one
-        for (let hlSizeIndex = 0; hlSizeIndex < 3; hlSizeIndex++) {
+        for (let hlSizeIndex = 0; hlSizeIndex < 1; hlSizeIndex++) {
 
             // Weights
             hiddenLayerSize = hlSizes[hlSizeIndex]
@@ -56,6 +59,14 @@ function train(inputData, inputResults) {
             for (let i = 0; i < 40000; i++) {
                 // forward propagation
                 layer1 = math.multiply(layer0, synapse0).map(sigmoid)
+                // dropout
+                layer1.forEach(index => {
+                    let rand = math.random()
+                    if (rand < dropout_percent) {
+                        layer1[index] = 0
+                    }
+                    layer1[index] *= 1.0/(1-dropout_percent)
+                })
                 layer2 = math.multiply(layer1, synapse1).map(sigmoid)
                 // compare estimate with actual output
                 layer2_error = math.subtract(y, layer2)
@@ -93,3 +104,4 @@ function get(input, w0, w1) {
 }
 
 module.exports = {train, get}
+
