@@ -28,7 +28,7 @@ const x = math.matrix([ [0,0,1,1],
 ])
 
 // Output Data
-const y = math.transpose(math.matrix([[0, 1, 1, 1, 0, 1, 1, 1]]))
+const y = math.transpose(math.matrix([[0, 0, 0, 1, 0, 0, 0, 1]]))
 
 const layer0 = x
 let layer1
@@ -45,18 +45,18 @@ let synapse1
 let minSynapse0
 let minSynapse1
 
-// const hlSizes = [(x.size())[1], (x.size())[1] - 1, (x.size())[1] + 1]
-// const alphas = [0.1, 1, 10]
-const hlSizes = [4]
-const alphas = [1]
+const hlSizes = [(x.size())[1], (x.size())[1] - 1, (x.size())[1] + 1]
+const alphas = [0.1, 1, 10]
+// const hlSizes = [4]
+// const alphas = [1]
 const dropout_percent = 0.2
 
 let count = 1
 
-for (let alphaIndex = 0; alphaIndex < 1; alphaIndex++) {
+for (let alphaIndex = 0; alphaIndex < 3; alphaIndex++) {
 
     // Iterate over 3 hidden layer sizes to get the best one
-    for (let hlSizeIndex = 0; hlSizeIndex < 1; hlSizeIndex++) {
+    for (let hlSizeIndex = 0; hlSizeIndex < 3; hlSizeIndex++) {
 
         // Weights
         hiddenLayerSize = hlSizes[hlSizeIndex]
@@ -67,12 +67,15 @@ for (let alphaIndex = 0; alphaIndex < 1; alphaIndex++) {
             // forward propagation
             layer1 = math.multiply(layer0, synapse0).map(sigmoid)
             // dropout
-            layer1.forEach(function(index) {
-                let rand = math.random()
-                if(rand < dropout_percent)
-                    layer1[index] = 0
-                layer1[index] *= 1.0/(1-dropout_percent)
-            })
+            for (let a = 0; a < layer1.length; a++) {
+                for (let b = 0; b < layer1[0].length; b++) {
+                    let rand = math.random();
+                    if (rand < dropout_percent) {
+                        layer1[a][b] = 0
+                    }
+                    layer1[a][b] *= 1.0/(1-dropout_percent);
+                }
+            }
             layer2 = math.multiply(layer1, synapse1).map(sigmoid)
             // compare estimate with actual output
             layer2_error = math.subtract(y, layer2)

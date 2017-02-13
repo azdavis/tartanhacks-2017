@@ -16,7 +16,6 @@ function getAveError(m1) {
     }
     return math.abs(sum / len)
 }
-// TODO: make a function that sets x and y
 
 // Input Data
 function train(inputData, inputResults) {
@@ -46,10 +45,10 @@ function train(inputData, inputResults) {
 
     const dropout_percent = 0.2
 
-    for (let alphaIndex = 0; alphaIndex < 1; alphaIndex++) {
+    for (let alphaIndex = 0; alphaIndex < 3; alphaIndex++) {
 
         // Iterate over 3 hidden layer sizes to get the best one
-        for (let hlSizeIndex = 0; hlSizeIndex < 1; hlSizeIndex++) {
+        for (let hlSizeIndex = 0; hlSizeIndex < 3; hlSizeIndex++) {
 
             // Weights
             hiddenLayerSize = hlSizes[hlSizeIndex]
@@ -60,13 +59,15 @@ function train(inputData, inputResults) {
                 // forward propagation
                 layer1 = math.multiply(layer0, synapse0).map(sigmoid)
                 // dropout
-                layer1.forEach(index => {
-                    let rand = math.random()
-                    if (rand < dropout_percent) {
-                        layer1[index] = 0
+                for (let a = 0; a < layer1.length; a++) {
+                    for (let b = 0; b < layer1[0].length; b++) {
+                        let rand = math.random();
+                        if (rand < dropout_percent) {
+                            layer1[a][b] = 0
+                        }
+                        layer1[a][b] *= 1.0/(1-dropout_percent);
                     }
-                    layer1[index] *= 1.0/(1-dropout_percent)
-                })
+                }
                 layer2 = math.multiply(layer1, synapse1).map(sigmoid)
                 // compare estimate with actual output
                 layer2_error = math.subtract(y, layer2)
@@ -104,4 +105,4 @@ function get(input, w0, w1) {
 }
 
 module.exports = {train, get}
-
+>>>>>>> switched forEach to for loop
