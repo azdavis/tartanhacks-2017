@@ -45,10 +45,10 @@ function train(inputData, inputResults) {
 
     const dropout_percent = 0.2
 
-    for (let alphaIndex = 0; alphaIndex < 3; alphaIndex++) {
+    for (let alphaIndex = 0; alphaIndex < 1; alphaIndex++) {
 
         // Iterate over 3 hidden layer sizes to get the best one
-        for (let hlSizeIndex = 0; hlSizeIndex < 3; hlSizeIndex++) {
+        for (let hlSizeIndex = 0; hlSizeIndex < 1; hlSizeIndex++) {
 
             // Weights
             hiddenLayerSize = hlSizes[hlSizeIndex]
