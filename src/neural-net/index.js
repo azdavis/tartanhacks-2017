@@ -105,4 +105,3 @@ function get(input, w0, w1) {
 }
 
 module.exports = {train, get}
->>>>>>> switched forEach to for loop
