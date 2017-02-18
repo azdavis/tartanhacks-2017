@@ -1,5 +1,3 @@
-const path = require("path")
-
 const options = {
     entry: ["promise-polyfill", "whatwg-fetch", "./src/views/home.js"],
     output: {
